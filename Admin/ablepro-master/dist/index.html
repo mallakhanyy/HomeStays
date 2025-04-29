@@ -21,143 +21,8 @@
 
     <!-- vendor css -->
     <link rel="stylesheet" href="assets/css/style.css">
-    
-    <style>
-        /* Responsive styles to prevent horizontal scrolling */
-        @media screen and (max-width: 992px) {
-            .pcoded-navbar {
-                width: 100%;
-                position: fixed;
-                z-index: 1029;
-            }
-            .pcoded-main-container {
-                margin-left: 0;
-            }
-        }
-        
-        /* Card responsive styles */
-        @media screen and (max-width: 576px) {
-            .card {
-                margin-bottom: 1rem;
-            }
-            .card-header {
-                padding: 1rem;
-            }
-            .card-body {
-                padding: 1rem;
-            }
-        }
-        
-        /* Dashboard card styles */
-        .dashboard-card {
-            margin-bottom: 1.5rem;
-            border-radius: 0.25rem;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-            transition: all 0.3s cubic-bezier(.25,.8,.25,1);
-        }
-        
-        .dashboard-card:hover {
-            box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-        }
-        
-        .dashboard-card .card-header {
-            background-color: #f8f9fa;
-            border-bottom: 1px solid #e9ecef;
-            padding: 0.75rem 1.25rem;
-        }
-        
-        .dashboard-card .card-body {
-            padding: 1.25rem;
-        }
-        
-        .dashboard-card .card-footer {
-            background-color: #f8f9fa;
-            border-top: 1px solid #e9ecef;
-            padding: 0.75rem 1.25rem;
-            text-align: right;
-        }
-        
-        .stat-card {
-            text-align: center;
-            padding: 1.5rem;
-            border-radius: 0.25rem;
-            margin-bottom: 1.5rem;
-            background-color: #fff;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-            transition: all 0.3s cubic-bezier(.25,.8,.25,1);
-        }
-        
-        .stat-card:hover {
-            box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-        }
-        
-        .stat-card .stat-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: #4099ff;
-        }
-        
-        .stat-card .stat-title {
-            font-size: 1rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            color: #333;
-        }
-        
-        .stat-card .stat-value {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #4099ff;
-        }
-        
-        .stat-card .stat-change {
-            font-size: 0.875rem;
-            color: #28a745;
-        }
-        
-        .stat-card .stat-change.negative {
-            color: #dc3545;
-        }
-        
-        .recent-activity {
-            margin-bottom: 1.5rem;
-        }
-        
-        .activity-item {
-            padding: 0.75rem 0;
-            border-bottom: 1px solid #e9ecef;
-        }
-        
-        .activity-item:last-child {
-            border-bottom: none;
-        }
-        
-        .activity-item .activity-icon {
-            width: 2.5rem;
-            height: 2.5rem;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 1rem;
-            background-color: #e9ecef;
-            color: #333;
-        }
-        
-        .activity-item .activity-content {
-            flex: 1;
-        }
-        
-        .activity-item .activity-title {
-            font-weight: 600;
-            margin-bottom: 0.25rem;
-        }
-        
-        .activity-item .activity-time {
-            font-size: 0.875rem;
-            color: #6c757d;
-        }
-    </style>
+    <!-- custom css -->
+    <link rel="stylesheet" href="assets/css/custom.css">
 </head>
 <body class="">
 	<!-- [ Pre-loader ] start -->
@@ -194,22 +59,6 @@
 						<a href="index.html" class="nav-link active"><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Dashboard</span></a>
 					</li>
 					
-					<!-- Host Management -->
-					<li class="nav-item pcoded-menu-caption">
-						<label>Host Management</label>
-					</li>
-					<li class="nav-item">
-						<a href="host-list.html" class="nav-link"><span class="pcoded-micon"><i class="feather icon-users"></i></span><span class="pcoded-mtext">Manage Hosts</span></a>
-					</li>
-					
-					<!-- Traveler Management -->
-					<li class="nav-item pcoded-menu-caption">
-						<label>Traveler Management</label>
-					</li>
-					<li class="nav-item">
-						<a href="traveler-list.html" class="nav-link"><span class="pcoded-micon"><i class="feather icon-user"></i></span><span class="pcoded-mtext">Manage Travelers</span></a>
-					</li>
-					
 					<!-- Homestay Opportunities -->
 					<li class="nav-item pcoded-menu-caption">
 						<label>Homestay Opportunities</label>
@@ -239,18 +88,18 @@
 						<label>Fee Management</label>
 					</li>
 					<li class="nav-item">
-						<a href="traveler-fees.html" class="nav-link"><span class="pcoded-micon"><i class="feather icon-dollar-sign"></i></span><span class="pcoded-mtext">Traveler Fees</span></a>
+						<a href="traveler-fees.html" class="nav-link"><span class="pcoded-micon"><i class="feather icon-credit-card"></i></span><span class="pcoded-mtext">Traveler Fees</span></a>
 					</li>
 					<li class="nav-item">
 						<a href="payment-verification.html" class="nav-link"><span class="pcoded-micon"><i class="feather icon-check-circle"></i></span><span class="pcoded-mtext">Payment Verification</span></a>
 					</li>
 					
-					<!-- Membership Management -->
+					<!-- User Reports -->
 					<li class="nav-item pcoded-menu-caption">
-						<label>Membership</label>
+						<label>User Reports</label>
 					</li>
 					<li class="nav-item">
-						<a href="membership-plans.html" class="nav-link"><span class="pcoded-micon"><i class="feather icon-credit-card"></i></span><span class="pcoded-mtext">Membership Plans</span></a>
+						<a href="user-reports.html" class="nav-link"><span class="pcoded-micon"><i class="feather icon-flag"></i></span><span class="pcoded-mtext">Manage Reports</span></a>
 					</li>
 				</ul>
 			</div>
@@ -534,11 +383,6 @@
                                     <i class="feather icon-check-circle mr-2"></i> Payment Verification
                                 </a>
                             </div>
-                            <div class="col-md-6">
-                                <a href="membership-plans.html" class="btn btn-outline-primary btn-block mb-3">
-                                    <i class="feather icon-credit-card mr-2"></i> Membership Plans
-                                </a>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -551,14 +395,8 @@
     <script src="assets/js/plugins/bootstrap.min.js"></script>
     <script src="assets/js/ripple.js"></script>
     <script src="assets/js/pcoded.min.js"></script>
-
-
-<!-- Apex Chart -->
-<script src="assets/js/plugins/apexcharts.min.js"></script>
-
-
-<!-- custom-chart js -->
-<script src="assets/js/pages/dashboard-main.js"></script>
+    <!-- Custom Js -->
+    <script src="assets/js/custom.js"></script>
 </body>
 
 </html>
