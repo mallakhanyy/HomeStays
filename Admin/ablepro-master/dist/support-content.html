@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Support Content - HomeStay Admin</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="HomeStay Admin Dashboard" />
+    <meta name="keywords" content="admin, dashboard, homestay, cultural exchange, support">
+    <meta name="author" content="HomeStay" />
+    <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        /* Responsive styles to prevent horizontal scrolling */
+        @media screen and (max-width: 992px) {
+            .pcoded-navbar {
+                width: 100%;
+                position: fixed;
+                z-index: 1029;
+            }
+            .pcoded-main-container {
+                margin-left: 0;
+            }
+        }
+        
+        /* Card responsive styles */
+        @media screen and (max-width: 576px) {
+            .card {
+                margin-bottom: 1rem;
+            }
+            .card-header {
+                padding: 1rem;
+            }
+            .card-body {
+                padding: 1rem;
+            }
+        }
+        
+        /* Support content card styles */
+        .support-card {
+            margin-bottom: 1.5rem;
+            border-radius: 0.25rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+            transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+        }
+        
+        .support-card:hover {
+            box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+        }
+        
+        .support-card .card-header {
+            background-color: #f8f9fa;
+            border-bottom: 1px solid #e9ecef;
+            padding: 0.75rem 1.25rem;
+        }
+        
+        .support-card .card-body {
+            padding: 1.25rem;
+        }
+        
+        .support-card .card-footer {
+            background-color: #f8f9fa;
+            border-top: 1px solid #e9ecef;
+            padding: 0.75rem 1.25rem;
+            text-align: right;
+        }
+        
+        .support-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .support-content {
+            color: #495057;
+        }
+        
+        .support-category {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            background-color: #e9ecef;
+            margin-bottom: 0.5rem;
+            font-size: 0.875rem;
+        }
+        
+        .support-status {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            margin-bottom: 0.5rem;
+            font-size: 0.875rem;
+        }
+        
+        .status-active {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        
+        .status-inactive {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        
+        .status-draft {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+        
+        /* Responsive form styles */
+        @media screen and (max-width: 576px) {
+            .form-group {
+                margin-bottom: 1rem;
+            }
+            
+            .btn-block {
+                margin-bottom: 0.5rem;
+            }
+        }
+        
+        /* Responsive filter styles */
+        @media screen and (max-width: 768px) {
+            .filter-row .col-md-3, 
+            .filter-row .col-md-4, 
+            .filter-row .col-md-2 {
+                margin-bottom: 1rem;
+            }
+        }
+        
+        /* Responsive support card layout */
+        @media screen and (max-width: 992px) {
+            .support-card {
+                margin-bottom: 1rem;
+            }
+        }
+        
+        @media screen and (max-width: 576px) {
+            .support-card .card-footer {
+                display: flex;
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .support-card .card-footer .btn {
+                margin-bottom: 0.5rem;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body class="">
+    <!-- [ Pre-loader ] start -->
+    <div class="loader-bg">
+        <div class="loader-track">
+            <div class="loader-fill"></div>
+        </div>
+    </div>
+    <!-- [ Pre-loader ] End -->
+    
+    <!-- [ navigation menu ] start -->
+    <nav class="pcoded-navbar menu-light">
+        <div class="navbar-wrapper">
+            <div class="navbar-content scroll-div">
+                <div class="">
+                    <div class="main-menu-header">
+                        <img class="img-radius" src="assets/images/user/avatar-2.jpg" alt="Admin-Profile-Image">
+                        <div class="user-details">
+                            <div id="more-details">Admin <i class="fa fa-caret-down"></i></div>
+                        </div>
+                    </div>
+                    <div class="collapse" id="nav-user-link">
+                        <ul class="list-unstyled">
+                            <li class="list-group-item"><a href="user-profile.html"><i class="feather icon-user m-r-5"></i>View Profile</a></li>
+                            <li class="list-group-item"><a href="auth-normal-sign-in.html"><i class="feather icon-log-out m-r-5"></i>Logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <ul class="nav pcoded-inner-navbar">
+                    <li class="nav-item pcoded-menu-caption">
+                        <label>Navigation</label>
+                    </li>
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link"><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Dashboard</span></a>
+                    </li>
+                    
+                    <!-- Host Management -->
+                    <li class="nav-item pcoded-menu-caption">
+                        <label>Host Management</label>
+                    </li>
+                    <li class="nav-item">
+                        <a href="host-list.html" class="nav-link"><span class="pcoded-micon"><i class="feather icon-users"></i></span><span class="pcoded-mtext">Manage Hosts</span></a>
+                    </li>
+                    
+                    <!-- Traveler Management -->
+                    <li class="nav-item pcoded-menu-caption">
+                        <label>Traveler Management</label>
+                    </li>
+                    <li class="nav-item">
+                        <a href="traveler-list.html" class="nav-link"><span class="pcoded-micon"><i class="feather icon-user"></i></span><span class="pcoded-mtext">Manage Travelers</span></a>
+                    </li>
+                    
+                    <!-- Homestay Opportunities -->
+                    <li class="nav-item pcoded-menu-caption">
+                        <label>Homestay Opportunities</label>
+                    </li>
+                    <li class="nav-item">
+                        <a href="opportunity-list.html" class="nav-link"><span class="pcoded-micon"><i class="feather icon-list"></i></span><span class="pcoded-mtext">View Opportunities</span></a>
+                    </li>
+                    
+                    <!-- Support Content -->
+                    <li class="nav-item pcoded-menu-caption">
+                        <label>Support</label>
+                    </li>
+                    <li class="nav-item">
+                        <a href="support-content.html" class="nav-link active"><span class="pcoded-micon"><i class="feather icon-message-square"></i></span><span class="pcoded-mtext">Support Content</span></a>
+                    </li>
+                    
+                    <!-- FAQ Management -->
+                    <li class="nav-item pcoded-menu-caption">
+                        <label>FAQ Management</label>
+                    </li>
+                    <li class="nav-item">
+                        <a href="faq-management.html" class="nav-link"><span class="pcoded-micon"><i class="feather icon-help-circle"></i></span><span class="pcoded-mtext">Manage FAQs</span></a>
+                    </li>
+                    
+                    <!-- Membership Management -->
+                    <li class="nav-item pcoded-menu-caption">
+                        <label>Membership</label>
+                    </li>
+                    <li class="nav-item">
+                        <a href="membership-plans.html" class="nav-link"><span class="pcoded-micon"><i class="feather icon-credit-card"></i></span><span class="pcoded-mtext">Membership Plans</span></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- [ navigation menu ] end -->
+    
+    <!-- [ Header ] start -->
+    <header class="navbar pcoded-header navbar-expand-lg navbar-light header-blue">
+        <div class="m-header">
+            <a class="mobile-menu" id="mobile-collapse" href="#!"><span></span></a>
+            <a href="#!" class="b-brand">
+                <img src="assets/images/logo_main.svg" alt="HomeStay Logo" width="120" class="logo">
+            </a>
+        </div>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto">
+                <li>
+                    <div class="dropdown">
+                        <a class="dropdown-toggle" href="#" data-toggle="dropdown"><i class="icon feather icon-bell"></i></a>
+                        <div class="dropdown-menu dropdown-menu-right notification">
+                            <div class="noti-head">
+                                <h6 class="d-inline-block m-b-0">Notifications</h6>
+                                <div class="float-right">
+                                    <a href="#!" class="m-r-10">mark as read</a>
+                                    <a href="#!">clear all</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="dropdown drp-user">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="feather icon-user"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right profile-notification">
+                            <div class="pro-head">
+                                <img src="assets/images/user/avatar-1.jpg" class="img-radius" alt="User-Profile-Image">
+                                <span>Admin</span>
+                                <a href="auth-signin.html" class="dud-logout" title="Logout">
+                                    <i class="feather icon-log-out"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <!-- [ Header ] end -->
+
+    <!-- [ Main Content ] start -->
+    <div class="pcoded-main-container">
+        <div class="pcoded-content">
+            <!-- [ breadcrumb ] start -->
+            <div class="page-header">
+                <div class="page-block">
+                    <div class="row align-items-center">
+                        <div class="col-md-12">
+                            <div class="page-header-title">
+                                <h5 class="m-b-10">Support Content</h5>
+                            </div>
+                            <ul class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="index.html"><i class="feather icon-home"></i></a></li>
+                                <li class="breadcrumb-item"><a href="#!">Support Content</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- [ breadcrumb ] end -->
+
+            <!-- [ Main Content ] start -->
+            <div class="row">
+                <!-- Add/Edit Support Content Form -->
+                <div class="col-xl-12 col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5>Add/Edit Support Content</h5>
+                            <span class="d-block m-t-5">Create or update support content for users</span>
+                        </div>
+                        <div class="card-body">
+                            <form id="supportForm">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="supportTitle">Title</label>
+                                            <input type="text" class="form-control" id="supportTitle" placeholder="Enter content title">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="supportCategory">Category</label>
+                                            <select class="form-control" id="supportCategory">
+                                                <option value="host">Host</option>
+                                                <option value="traveler">Traveler</option>
+                                                <option value="general">General</option>
+                                                <option value="payment">Payment</option>
+                                                <option value="safety">Safety</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="supportContent">Content</label>
+                                            <textarea class="form-control" id="supportContent" rows="6" placeholder="Enter support content"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="supportStatus">Status</label>
+                                            <select class="form-control" id="supportStatus">
+                                                <option value="active">Active</option>
+                                                <option value="inactive">Inactive</option>
+                                                <option value="draft">Draft</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="supportOrder">Display Order</label>
+                                            <input type="number" class="form-control" id="supportOrder" placeholder="Enter display order">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <button type="button" class="btn btn-primary" onclick="saveSupport()">Save Content</button>
+                                        <button type="button" class="btn btn-secondary" onclick="resetForm()">Reset</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Support Content List -->
+                <div class="col-xl-12 col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5>Support Content List</h5>
+                            <span class="d-block m-t-5">Manage existing support content</span>
+                        </div>
+                        <div class="card-body">
+                            <!-- Filter Options -->
+                            <div class="row mb-3 filter-row">
+                                <div class="col-md-3">
+                                    <select class="form-control" id="filterCategory">
+                                        <option value="">All Categories</option>
+                                        <option value="host">Host</option>
+                                        <option value="traveler">Traveler</option>
+                                        <option value="general">General</option>
+                                        <option value="payment">Payment</option>
+                                        <option value="safety">Safety</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3">
+                                    <select class="form-control" id="filterStatus">
+                                        <option value="">All Statuses</option>
+                                        <option value="active">Active</option>
+                                        <option value="inactive">Inactive</option>
+                                        <option value="draft">Draft</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <input type="text" class="form-control" id="searchSupport" placeholder="Search content...">
+                                </div>
+                                <div class="col-md-2">
+                                    <button class="btn btn-primary btn-block" onclick="applyFilters()">Apply Filters</button>
+                                </div>
+                            </div>
+                            
+                            <!-- Support Content Cards -->
+                            <div class="row">
+                                <!-- Host Support 1 -->
+                                <div class="col-md-6 col-lg-4">
+                                    <div class="card support-card">
+                                        <div class="card-header">
+                                            <h5 class="support-title">Host Guidelines</h5>
+                                            <span class="support-category">Host</span>
+                                            <span class="support-status status-active">Active</span>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="support-content">
+                                                As a host, you are responsible for providing a safe and welcoming environment for travelers. This includes ensuring your property meets safety standards, clearly communicating expectations, and being available to address concerns. We recommend creating a detailed profile with photos and specific information about your property and the cultural experience you offer.
+                                            </div>
+                                        </div>
+                                        <div class="card-footer">
+                                            <button class="btn btn-primary btn-sm" onclick="editSupport(1)">
+                                                <i class="feather icon-edit"></i> Edit
+                                            </button>
+                                            <button class="btn btn-danger btn-sm" onclick="deleteSupport(1)">
+                                                <i class="feather icon-trash-2"></i> Delete
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Traveler Support 1 -->
+                                <div class="col-md-6 col-lg-4">
+                                    <div class="card support-card">
+                                        <div class="card-header">
+                                            <h5 class="support-title">Traveler Guidelines</h5>
+                                            <span class="support-category">Traveler</span>
+                                            <span class="support-status status-active">Active</span>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="support-content">
+                                                As a traveler, you are expected to respect your host's home and culture. This includes following house rules, completing agreed-upon tasks, and being open to cultural exchange. We recommend reading host profiles carefully, asking questions before booking, and maintaining clear communication throughout your stay.
+                                            </div>
+                                        </div>
+                                        <div class="card-footer">
+                                            <button class="btn btn-primary btn-sm" onclick="editSupport(2)">
+                                                <i class="feather icon-edit"></i> Edit
+                                            </button>
+                                            <button class="btn btn-danger btn-sm" onclick="deleteSupport(2)">
+                                                <i class="feather icon-trash-2"></i> Delete
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- General Support 1 -->
+                                <div class="col-md-6 col-lg-4">
+                                    <div class="card support-card">
+                                        <div class="card-header">
+                                            <h5 class="support-title">Cultural Exchange Tips</h5>
+                                            <span class="support-category">General</span>
+                                            <span class="support-status status-active">Active</span>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="support-content">
+                                                Cultural exchange is at the heart of the HomeStay experience. We encourage both hosts and travelers to share their traditions, customs, and perspectives. This can include cooking traditional meals together, sharing stories, teaching language skills, and participating in local activities. Remember to approach differences with curiosity and respect.
+                                            </div>
+                                        </div>
+                                        <div class="card-footer">
+                                            <button class="btn btn-primary btn-sm" onclick="editSupport(3)">
+                                                <i class="feather icon-edit"></i> Edit
+                                            </button>
+                                            <button class="btn btn-danger btn-sm" onclick="deleteSupport(3)">
+                                                <i class="feather icon-trash-2"></i> Delete
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Payment Support 1 -->
+                                <div class="col-md-6 col-lg-4">
+                                    <div class="card support-card">
+                                        <div class="card-header">
+                                            <h5 class="support-title">Payment and Fees</h5>
+                                            <span class="support-category">Payment</span>
+                                            <span class="support-status status-active">Active</span>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="support-content">
+                                                HomeStay operates on a work-exchange model where travelers provide help in exchange for accommodation. There are no direct payments between hosts and travelers. However, we charge platform fees for premium features and services. These fees help us maintain the platform, verify users, and provide support services.
+                                            </div>
+                                        </div>
+                                        <div class="card-footer">
+                                            <button class="btn btn-primary btn-sm" onclick="editSupport(4)">
+                                                <i class="feather icon-edit"></i> Edit
+                                            </button>
+                                            <button class="btn btn-danger btn-sm" onclick="deleteSupport(4)">
+                                                <i class="feather icon-trash-2"></i> Delete
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Safety Support 1 -->
+                                <div class="col-md-6 col-lg-4">
+                                    <div class="card support-card">
+                                        <div class="card-header">
+                                            <h5 class="support-title">Safety Guidelines</h5>
+                                            <span class="support-category">Safety</span>
+                                            <span class="support-status status-active">Active</span>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="support-content">
+                                                Your safety is our top priority. We recommend verifying your identity, reading reviews from previous experiences, and communicating through our platform until you feel comfortable. If you encounter any issues during your stay, contact our support team immediately. We have emergency contact information available 24/7.
+                                            </div>
+                                        </div>
+                                        <div class="card-footer">
+                                            <button class="btn btn-primary btn-sm" onclick="editSupport(5)">
+                                                <i class="feather icon-edit"></i> Edit
+                                            </button>
+                                            <button class="btn btn-danger btn-sm" onclick="deleteSupport(5)">
+                                                <i class="feather icon-trash-2"></i> Delete
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Host Support 2 -->
+                                <div class="col-md-6 col-lg-4">
+                                    <div class="card support-card">
+                                        <div class="card-header">
+                                            <h5 class="support-title">Creating an Attractive Listing</h5>
+                                            <span class="support-category">Host</span>
+                                            <span class="support-status status-active">Active</span>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="support-content">
+                                                A well-crafted listing can attract the right travelers for your homestay. Include high-quality photos of your property and the surrounding area, clearly describe the work required, and highlight the cultural experience you offer. Be specific about your expectations, house rules, and what travelers can expect during their stay.
+                                            </div>
+                                        </div>
+                                        <div class="card-footer">
+                                            <button class="btn btn-primary btn-sm" onclick="editSupport(6)">
+                                                <i class="feather icon-edit"></i> Edit
+                                            </button>
+                                            <button class="btn btn-danger btn-sm" onclick="deleteSupport(6)">
+                                                <i class="feather icon-trash-2"></i> Delete
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- [ Main Content ] end -->
+        </div>
+    </div>
+    <!-- [ Main Content ] end -->
+
+    <!-- Required Js -->
+    <script src="assets/js/vendor-all.min.js"></script>
+    <script src="assets/js/plugins/bootstrap.min.js"></script>
+    <script src="assets/js/pcoded.min.js"></script>
+    
+    <!-- Custom JS for support content management -->
+    <script>
+        function saveSupport() {
+            // Get form values
+            const title = document.getElementById('supportTitle').value;
+            const category = document.getElementById('supportCategory').value;
+            const content = document.getElementById('supportContent').value;
+            const status = document.getElementById('supportStatus').value;
+            const order = document.getElementById('supportOrder').value;
+            
+            // Validate form
+            if (!title || !content) {
+                alert('Please fill in all required fields');
+                return;
+            }
+            
+            // Here you would typically make an API call to save the support content
+            console.log('Saving support content:', { title, category, content, status, order });
+            
+            // Show success message
+            alert('Support content saved successfully!');
+            
+            // Reset form
+            resetForm();
+        }
+        
+        function resetForm() {
+            document.getElementById('supportForm').reset();
+        }
+        
+        function editSupport(id) {
+            // Here you would typically fetch the support content data and populate the form
+            console.log('Editing support content with ID:', id);
+            
+            // For demo purposes, we'll just show an alert
+            alert('Edit functionality would load support content data into the form');
+        }
+        
+        function deleteSupport(id) {
+            if (confirm('Are you sure you want to delete this support content?')) {
+                // Here you would typically make an API call to delete the support content
+                console.log('Deleting support content with ID:', id);
+                
+                // Show success message
+                alert('Support content deleted successfully!');
+            }
+        }
+        
+        function applyFilters() {
+            const category = document.getElementById('filterCategory').value;
+            const status = document.getElementById('filterStatus').value;
+            const search = document.getElementById('searchSupport').value;
+            
+            // Here you would typically make an API call to filter support content
+            console.log('Applying filters:', { category, status, search });
+            
+            // For demo purposes, we'll just show an alert
+            alert('Filters applied! In a real application, this would refresh the support content list.');
+        }
+    </script>
+</body>
+</html> 
+</html> 

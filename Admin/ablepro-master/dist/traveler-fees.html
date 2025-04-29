@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Traveler Fees - HomeStay Admin</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="HomeStay Admin Dashboard" />
+    <meta name="keywords" content="admin, dashboard, homestay, cultural exchange, fees">
+    <meta name="author" content="HomeStay" />
+    <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        /* Responsive styles to prevent horizontal scrolling */
+        @media screen and (max-width: 992px) {
+            .pcoded-navbar {
+                width: 100%;
+                position: fixed;
+                z-index: 1029;
+            }
+            .pcoded-main-container {
+                margin-left: 0;
+            }
+        }
+        
+        /* Card responsive styles */
+        @media screen and (max-width: 576px) {
+            .card {
+                margin-bottom: 1rem;
+            }
+            .card-header {
+                padding: 1rem;
+            }
+            .card-body {
+                padding: 1rem;
+            }
+        }
+        
+        /* Fee card styles */
+        .fee-card {
+            margin-bottom: 1.5rem;
+            border-radius: 0.25rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+            transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+        }
+        
+        .fee-card:hover {
+            box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+        }
+        
+        .fee-card .card-header {
+            background-color: #f8f9fa;
+            border-bottom: 1px solid #e9ecef;
+            padding: 0.75rem 1.25rem;
+        }
+        
+        .fee-card .card-body {
+            padding: 1.25rem;
+        }
+        
+        .fee-card .card-footer {
+            background-color: #f8f9fa;
+            border-top: 1px solid #e9ecef;
+            padding: 0.75rem 1.25rem;
+            text-align: right;
+        }
+        
+        .fee-type {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .fee-amount {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #28a745;
+            margin-bottom: 0.5rem;
+        }
+        
+        .fee-description {
+            color: #495057;
+            margin-bottom: 1rem;
+        }
+        
+        .fee-applicable {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            background-color: #e9ecef;
+            margin-bottom: 0.5rem;
+            font-size: 0.875rem;
+        }
+        
+        .fee-status {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            margin-bottom: 0.5rem;
+            font-size: 0.875rem;
+        }
+        
+        .status-active {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        
+        .status-inactive {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        
+        .status-draft {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+        
+        /* Responsive form styles */
+        @media screen and (max-width: 576px) {
+            .form-group {
+                margin-bottom: 1rem;
+            }
+            
+            .btn-block {
+                margin-bottom: 0.5rem;
+            }
+        }
+        
+        /* Responsive filter styles */
+        @media screen and (max-width: 768px) {
+            .filter-row .col-md-3, 
+            .filter-row .col-md-4, 
+            .filter-row .col-md-2 {
+                margin-bottom: 1rem;
+            }
+        }
+        
+        /* Responsive fee card layout */
+        @media screen and (max-width: 992px) {
+            .fee-card {
+                margin-bottom: 1rem;
+            }
+        }
+        
+        @media screen and (max-width: 576px) {
+            .fee-card .card-footer {
+                display: flex;
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .fee-card .card-footer .btn {
+                margin-bottom: 0.5rem;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body class="">
+    <!-- [ Pre-loader ] start -->
+    <div class="loader-bg">
+        <div class="loader-track">
+            <div class="loader-fill"></div>
+        </div>
+    </div>
+    <!-- [ Pre-loader ] End -->
+    
+    <!-- [ navigation menu ] start -->
+    <nav class="pcoded-navbar menu-light">
+        <div class="navbar-wrapper">
+            <div class="navbar-content scroll-div">
+                <div class="">
+                    <div class="main-menu-header">
+                        <img class="img-radius" src="assets/images/user/avatar-2.jpg" alt="Admin-Profile-Image">
+                        <div class="user-details">
+                            <div id="more-details">Admin <i class="fa fa-caret-down"></i></div>
+                        </div>
+                    </div>
+                    <div class="collapse" id="nav-user-link">
+                        <ul class="list-unstyled">
+                            <li class="list-group-item"><a href="user-profile.html"><i class="feather icon-user m-r-5"></i>View Profile</a></li>
+                            <li class="list-group-item"><a href="auth-normal-sign-in.html"><i class="feather icon-log-out m-r-5"></i>Logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <ul class="nav pcoded-inner-navbar">
+                    <li class="nav-item pcoded-menu-caption">
+                        <label>Navigation</label>
+                    </li>
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link"><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Dashboard</span></a>
+                    </li>
+                    
+                    <!-- Host Management -->
+                    <li class="nav-item pcoded-menu-caption">
+                        <label>Host Management</label>
+                    </li>
+                    <li class="nav-item">
+                        <a href="host-list.html" class="nav-link"><span class="pcoded-micon"><i class="feather icon-users"></i></span><span class="pcoded-mtext">Manage Hosts</span></a>
+                    </li>
+                    
+                    <!-- Traveler Management -->
+                    <li class="nav-item pcoded-menu-caption">
+                        <label>Traveler Management</label>
+                    </li>
+                    <li class="nav-item">
+                        <a href="traveler-list.html" class="nav-link"><span class="pcoded-micon"><i class="feather icon-user"></i></span><span class="pcoded-mtext">Manage Travelers</span></a>
+                    </li>
+                    
+                    <!-- Homestay Opportunities -->
+                    <li class="nav-item pcoded-menu-caption">
+                        <label>Homestay Opportunities</label>
+                    </li>
+                    <li class="nav-item">
+                        <a href="opportunity-list.html" class="nav-link"><span class="pcoded-micon"><i class="feather icon-list"></i></span><span class="pcoded-mtext">View Opportunities</span></a>
+                    </li>
+                    
+                    <!-- Support Content -->
+                    <li class="nav-item pcoded-menu-caption">
+                        <label>Support</label>
+                    </li>
+                    <li class="nav-item">
+                        <a href="support-content.html" class="nav-link"><span class="pcoded-micon"><i class="feather icon-message-square"></i></span><span class="pcoded-mtext">Support Content</span></a>
+                    </li>
+                    
+                    <!-- FAQ Management -->
+                    <li class="nav-item pcoded-menu-caption">
+                        <label>FAQ Management</label>
+                    </li>
+                    <li class="nav-item">
+                        <a href="faq-management.html" class="nav-link"><span class="pcoded-micon"><i class="feather icon-help-circle"></i></span><span class="pcoded-mtext">Manage FAQs</span></a>
+                    </li>
+                    
+                    <!-- Fee Management -->
+                    <li class="nav-item pcoded-menu-caption">
+                        <label>Fee Management</label>
+                    </li>
+                    <li class="nav-item">
+                        <a href="traveler-fees.html" class="nav-link active"><span class="pcoded-micon"><i class="feather icon-dollar-sign"></i></span><span class="pcoded-mtext">Traveler Fees</span></a>
+                    </li>
+                    
+                    <!-- Membership Management -->
+                    <li class="nav-item pcoded-menu-caption">
+                        <label>Membership</label>
+                    </li>
+                    <li class="nav-item">
+                        <a href="membership-plans.html" class="nav-link"><span class="pcoded-micon"><i class="feather icon-credit-card"></i></span><span class="pcoded-mtext">Membership Plans</span></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- [ navigation menu ] end -->
+    
+    <!-- [ Header ] start -->
+    <header class="navbar pcoded-header navbar-expand-lg navbar-light header-blue">
+        <div class="m-header">
+            <a class="mobile-menu" id="mobile-collapse" href="#!"><span></span></a>
+            <a href="#!" class="b-brand">
+                <img src="assets/images/logo_main.svg" alt="HomeStay Logo" width="120" class="logo">
+            </a>
+        </div>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto">
+                <li>
+                    <div class="dropdown">
+                        <a class="dropdown-toggle" href="#" data-toggle="dropdown"><i class="icon feather icon-bell"></i></a>
+                        <div class="dropdown-menu dropdown-menu-right notification">
+                            <div class="noti-head">
+                                <h6 class="d-inline-block m-b-0">Notifications</h6>
+                                <div class="float-right">
+                                    <a href="#!" class="m-r-10">mark as read</a>
+                                    <a href="#!">clear all</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="dropdown drp-user">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="feather icon-user"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right profile-notification">
+                            <div class="pro-head">
+                                <img src="assets/images/user/avatar-1.jpg" class="img-radius" alt="User-Profile-Image">
+                                <span>Admin</span>
+                                <a href="auth-signin.html" class="dud-logout" title="Logout">
+                                    <i class="feather icon-log-out"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <!-- [ Header ] end -->
+
+    <!-- [ Main Content ] start -->
+    <div class="pcoded-main-container">
+        <div class="pcoded-content">
+            <!-- [ breadcrumb ] start -->
+            <div class="page-header">
+                <div class="page-block">
+                    <div class="row align-items-center">
+                        <div class="col-md-12">
+                            <div class="page-header-title">
+                                <h5 class="m-b-10">Traveler Fees</h5>
+                            </div>
+                            <ul class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="index.html"><i class="feather icon-home"></i></a></li>
+                                <li class="breadcrumb-item"><a href="#!">Traveler Fees</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- [ breadcrumb ] end -->
+
+            <!-- [ Main Content ] start -->
+            <div class="row">
+                <!-- Add/Edit Fee Form -->
+                <div class="col-xl-12 col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5>Add/Edit Traveler Fee</h5>
+                            <span class="d-block m-t-5">Create or update fees for travelers</span>
+                        </div>
+                        <div class="card-body">
+                            <form id="feeForm">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="feeType">Fee Type</label>
+                                            <select class="form-control" id="feeType">
+                                                <option value="membership">Membership Fee</option>
+                                                <option value="verification">Verification Fee</option>
+                                                <option value="booking">Booking Fee</option>
+                                                <option value="insurance">Insurance Fee</option>
+                                                <option value="other">Other</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="feeAmount">Amount</label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">$</span>
+                                                </div>
+                                                <input type="number" class="form-control" id="feeAmount" placeholder="Enter fee amount" step="0.01">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="feeStatus">Status</label>
+                                            <select class="form-control" id="feeStatus">
+                                                <option value="active">Active</option>
+                                                <option value="inactive">Inactive</option>
+                                                <option value="draft">Draft</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="feeApplicable">Applicable To</label>
+                                            <select class="form-control" id="feeApplicable">
+                                                <option value="all">All Travelers</option>
+                                                <option value="new">New Travelers</option>
+                                                <option value="returning">Returning Travelers</option>
+                                                <option value="premium">Premium Members</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="feeDescription">Description</label>
+                                            <textarea class="form-control" id="feeDescription" rows="3" placeholder="Enter fee description"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <button type="button" class="btn btn-primary" onclick="saveFee()">Save Fee</button>
+                                        <button type="button" class="btn btn-secondary" onclick="resetForm()">Reset</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Fee List -->
+                <div class="col-xl-12 col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5>Traveler Fees List</h5>
+                            <span class="d-block m-t-5">Manage existing traveler fees</span>
+                        </div>
+                        <div class="card-body">
+                            <!-- Filter Options -->
+                            <div class="row mb-3 filter-row">
+                                <div class="col-md-3">
+                                    <select class="form-control" id="filterType">
+                                        <option value="">All Types</option>
+                                        <option value="membership">Membership Fee</option>
+                                        <option value="verification">Verification Fee</option>
+                                        <option value="booking">Booking Fee</option>
+                                        <option value="insurance">Insurance Fee</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3">
+                                    <select class="form-control" id="filterStatus">
+                                        <option value="">All Statuses</option>
+                                        <option value="active">Active</option>
+                                        <option value="inactive">Inactive</option>
+                                        <option value="draft">Draft</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <input type="text" class="form-control" id="searchFee" placeholder="Search fees...">
+                                </div>
+                                <div class="col-md-2">
+                                    <button class="btn btn-primary btn-block" onclick="applyFilters()">Apply Filters</button>
+                                </div>
+                            </div>
+                            
+                            <!-- Fee Cards -->
+                            <div class="row">
+                                <!-- Membership Fee -->
+                                <div class="col-md-6 col-lg-4">
+                                    <div class="card fee-card">
+                                        <div class="card-header">
+                                            <h5 class="fee-type">Membership Fee</h5>
+                                            <div class="fee-amount">$29.99</div>
+                                            <span class="fee-applicable">All Travelers</span>
+                                            <span class="fee-status status-active">Active</span>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="fee-description">
+                                                Annual membership fee for all travelers. This fee helps us maintain the platform, verify users, and provide support services.
+                                            </div>
+                                        </div>
+                                        <div class="card-footer">
+                                            <button class="btn btn-primary btn-sm" onclick="editFee(1)">
+                                                <i class="feather icon-edit"></i> Edit
+                                            </button>
+                                            <button class="btn btn-danger btn-sm" onclick="deleteFee(1)">
+                                                <i class="feather icon-trash-2"></i> Delete
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Verification Fee -->
+                                <div class="col-md-6 col-lg-4">
+                                    <div class="card fee-card">
+                                        <div class="card-header">
+                                            <h5 class="fee-type">Verification Fee</h5>
+                                            <div class="fee-amount">$9.99</div>
+                                            <span class="fee-applicable">New Travelers</span>
+                                            <span class="fee-status status-active">Active</span>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="fee-description">
+                                                One-time verification fee for new travelers. This fee covers the cost of verifying identity documents and conducting background checks.
+                                            </div>
+                                        </div>
+                                        <div class="card-footer">
+                                            <button class="btn btn-primary btn-sm" onclick="editFee(2)">
+                                                <i class="feather icon-edit"></i> Edit
+                                            </button>
+                                            <button class="btn btn-danger btn-sm" onclick="deleteFee(2)">
+                                                <i class="feather icon-trash-2"></i> Delete
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Booking Fee -->
+                                <div class="col-md-6 col-lg-4">
+                                    <div class="card fee-card">
+                                        <div class="card-header">
+                                            <h5 class="fee-type">Booking Fee</h5>
+                                            <div class="fee-amount">$5.00</div>
+                                            <span class="fee-applicable">All Travelers</span>
+                                            <span class="fee-status status-active">Active</span>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="fee-description">
+                                                Fee charged for each confirmed homestay booking. This fee helps cover the cost of processing bookings and providing booking support.
+                                            </div>
+                                        </div>
+                                        <div class="card-footer">
+                                            <button class="btn btn-primary btn-sm" onclick="editFee(3)">
+                                                <i class="feather icon-edit"></i> Edit
+                                            </button>
+                                            <button class="btn btn-danger btn-sm" onclick="deleteFee(3)">
+                                                <i class="feather icon-trash-2"></i> Delete
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Insurance Fee -->
+                                <div class="col-md-6 col-lg-4">
+                                    <div class="card fee-card">
+                                        <div class="card-header">
+                                            <h5 class="fee-type">Insurance Fee</h5>
+                                            <div class="fee-amount">$14.99</div>
+                                            <span class="fee-applicable">All Travelers</span>
+                                            <span class="fee-status status-active">Active</span>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="fee-description">
+                                                Optional travel insurance fee for travelers. This provides basic coverage for accidents and emergencies during homestay stays.
+                                            </div>
+                                        </div>
+                                        <div class="card-footer">
+                                            <button class="btn btn-primary btn-sm" onclick="editFee(4)">
+                                                <i class="feather icon-edit"></i> Edit
+                                            </button>
+                                            <button class="btn btn-danger btn-sm" onclick="deleteFee(4)">
+                                                <i class="feather icon-trash-2"></i> Delete
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Premium Membership Fee -->
+                                <div class="col-md-6 col-lg-4">
+                                    <div class="card fee-card">
+                                        <div class="card-header">
+                                            <h5 class="fee-type">Premium Membership Fee</h5>
+                                            <div class="fee-amount">$49.99</div>
+                                            <span class="fee-applicable">Premium Members</span>
+                                            <span class="fee-status status-active">Active</span>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="fee-description">
+                                                Annual premium membership fee. Premium members enjoy additional features like priority listings, enhanced profiles, and direct messaging with hosts.
+                                            </div>
+                                        </div>
+                                        <div class="card-footer">
+                                            <button class="btn btn-primary btn-sm" onclick="editFee(5)">
+                                                <i class="feather icon-edit"></i> Edit
+                                            </button>
+                                            <button class="btn btn-danger btn-sm" onclick="deleteFee(5)">
+                                                <i class="feather icon-trash-2"></i> Delete
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- [ Main Content ] end -->
+        </div>
+    </div>
+    <!-- [ Main Content ] end -->
+
+    <!-- Required Js -->
+    <script src="assets/js/vendor-all.min.js"></script>
+    <script src="assets/js/plugins/bootstrap.min.js"></script>
+    <script src="assets/js/pcoded.min.js"></script>
+    
+    <!-- Custom JS for fee management -->
+    <script>
+        function saveFee() {
+            // Get form values
+            const type = document.getElementById('feeType').value;
+            const amount = document.getElementById('feeAmount').value;
+            const status = document.getElementById('feeStatus').value;
+            const applicable = document.getElementById('feeApplicable').value;
+            const description = document.getElementById('feeDescription').value;
+            
+            // Validate form
+            if (!type || !amount || !description) {
+                alert('Please fill in all required fields');
+                return;
+            }
+            
+            // Here you would typically make an API call to save the fee
+            console.log('Saving fee:', { type, amount, status, applicable, description });
+            
+            // Show success message
+            alert('Fee saved successfully!');
+            
+            // Reset form
+            resetForm();
+        }
+        
+        function resetForm() {
+            document.getElementById('feeForm').reset();
+        }
+        
+        function editFee(id) {
+            // Here you would typically fetch the fee data and populate the form
+            console.log('Editing fee with ID:', id);
+            
+            // For demo purposes, we'll just show an alert
+            alert('Edit functionality would load fee data into the form');
+        }
+        
+        function deleteFee(id) {
+            if (confirm('Are you sure you want to delete this fee?')) {
+                // Here you would typically make an API call to delete the fee
+                console.log('Deleting fee with ID:', id);
+                
+                // Show success message
+                alert('Fee deleted successfully!');
+            }
+        }
+        
+        function applyFilters() {
+            const type = document.getElementById('filterType').value;
+            const status = document.getElementById('filterStatus').value;
+            const search = document.getElementById('searchFee').value;
+            
+            // Here you would typically make an API call to filter fees
+            console.log('Applying filters:', { type, status, search });
+            
+            // For demo purposes, we'll just show an alert
+            alert('Filters applied! In a real application, this would refresh the fee list.');
+        }
+    </script>
+</body>
+</html> 

@@ -16,7 +16,7 @@ function floatchart() {
                     enabled: true
                 }
             },
-            colors: ["#4680ff"],
+            colors: ["#7b2cbf"],
             stroke: {
                 curve: 'smooth',
                 width: 2,
@@ -199,7 +199,7 @@ function floatchart() {
             dataLabels: {
                 enabled: false
             },
-            colors: ["#4680ff"],
+            colors: ["#7b2cbf"],
             fill: {
                 type: 'solid',
                 opacity: 0.3,
@@ -207,8 +207,8 @@ function floatchart() {
             markers: {
                 size: 2,
                 opacity: 0.9,
-                colors: "#4680ff",
-                strokeColor: "#4680ff",
+                colors: "#7b2cbf",
+                strokeColor: "#7b2cbf",
                 strokeWidth: 2,
                 hover: {
                     size: 4,
